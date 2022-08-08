@@ -1,0 +1,31 @@
+{
+  "name": "vue.animate.css",
+  "version": "0.0.1",
+  "description": "Vue directive implement for Animate.css",
+  "main": "mian.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc --emitDeclarationOnly --declaration && node ./esbuild.dev",
+    "build": "tsc --emitDeclarationOnly --declaration && node ./esbuild.prod",
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "css",
+    "animate.css"
+  ],
+  "author": "2538340934y@gmail.com",
+  "license": "Hippocratic-2.1",
+  "devDependencies": {
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "^3.3.0",
+    "esbuild": "^0.14.53",
+    "vue": "^3.2.37"
+  }
+}
