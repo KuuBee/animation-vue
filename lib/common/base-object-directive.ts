@@ -1,7 +1,13 @@
 import type { ObjectDirective } from "vue";
 import { AnimateConfig, GlobalAnimateConfig } from "./config";
 
-const elBucketMap = new WeakMap();
+type ElBucketMapValue = {
+  // 动画结束关闭 fn
+  animationendEventHandler?: () => void;
+  clickEventHandler?: () => void;
+  hoverEventHandler?: () => void;
+};
+const elBucketMap = new WeakMap<HTMLElement, ElBucketMapValue>();
 type SetPropertyConfig = Pick<
   NonNullable<ConstructorParameters<typeof GlobalAnimateConfig>["0"]>,
   "delay" | "duration" | "repeat"
@@ -36,7 +42,7 @@ function setProperty(
   if (duration !== globaleDuration) {
     animateCssVariable.push(["--animate-duration", `${duration}ms`]);
   }
-  if (repeat !== globaleRepeat) {
+  if (repeat !== 1) {
     animateCssVariable.push(["--animate-repeat", `${repeat}`]);
     actionCssStr += `${actionCssStr ? " " : ""}${prefix}repeat-1`;
   }
@@ -47,31 +53,65 @@ function setProperty(
   return [actionCssStr, animateCssVariable];
 }
 
-function registerCancelEvent(
+function registerEndEvent(
   el: HTMLElement,
   defalutClassName: string,
   animateCssVariable: CssSetPropertyFnParametersList
 ) {
-  const eventHandler = () => {
+  const animationendEventHandler = () => {
     if (el.className === defalutClassName) return;
     el.className = defalutClassName;
     for (const item of animateCssVariable) {
       el.style.removeProperty(item[0]);
     }
-    el.removeEventListener("animationcancel", eventHandler);
-    el.removeEventListener("animationend", eventHandler);
+    el.removeEventListener("animationcancel", animationendEventHandler);
+    el.removeEventListener("animationend", animationendEventHandler);
   };
-  elBucketMap.set(el, {
-    eventHandler
-  });
-  el.addEventListener("animationcancel", eventHandler);
-  el.addEventListener("animationend", eventHandler);
+  let data: ElBucketMapValue;
+  if (elBucketMap.has(el)) {
+    data = elBucketMap.get(el)!;
+  } else {
+    data = {};
+    elBucketMap.set(el, data);
+  }
+  data.animationendEventHandler = animationendEventHandler;
+  el.addEventListener("animationcancel", animationendEventHandler);
+  el.addEventListener("animationend", animationendEventHandler);
+}
+
+function cancelAndStopAnimateWithEvent(
+  el: HTMLElement,
+  isClick: boolean,
+  isHover: boolean,
+  runFn: () => void
+) {
+  if (!elBucketMap.has(el)) return;
+  const currentMap = elBucketMap.get(el)!;
+  if (currentMap.animationendEventHandler) {
+    // 先关闭动画和取消监听的事件 避免泄露
+    currentMap.animationendEventHandler();
+    el.removeEventListener(
+      "animationcancel",
+      currentMap.animationendEventHandler
+    );
+    el.removeEventListener("animationend", currentMap.animationendEventHandler);
+  }
+  if (currentMap?.clickEventHandler) {
+    el.removeEventListener("click", currentMap.clickEventHandler);
+    currentMap.hoverEventHandler = isClick ? runFn : undefined;
+    if (isClick) el.addEventListener("click", runFn);
+  }
+  if (currentMap?.hoverEventHandler) {
+    el.removeEventListener("mouseenter", currentMap.hoverEventHandler);
+    currentMap.hoverEventHandler = isHover ? runFn : undefined;
+    if (isHover) el.addEventListener("mouseenter", runFn);
+  }
 }
 
 export const baseObjectDirective = (
   animateClassName: string
 ): ObjectDirective<HTMLElement, AnimateConfig> => ({
-  mounted(el, bind, vnode, prevVNode) {
+  mounted(el, bind) {
     const { modifiers, value } = bind;
     // 全局单例里拿配置
     const {
@@ -85,6 +125,8 @@ export const baseObjectDirective = (
     if (stop) return;
     const defalutClassName = el.className;
     const { delay, duration, repeat, autoPlay, play } = value ?? {};
+    const isClick = modifiers?.click ?? false;
+    const isHover = modifiers?.hover ?? false;
 
     // 延迟
     const _delay = delay ?? globaleDelay;
@@ -98,43 +140,73 @@ export const baseObjectDirective = (
     const _play = play ?? true;
     // mounted 时如果 _autoPlay 为 false 就直接跳出
     // 等等 update 时去进行更新
-    if (!_autoPlay || !_play) return;
+    if ((!_autoPlay || !_play) && (!isClick || !isHover)) return;
+    const runFn = () => {
+      cancelAndStopAnimateWithEvent(el, isClick, isHover, runFn);
+      // 设置css变量
+      const [actionCssStr, animateCssVariable] = setProperty(
+        el,
+        prefix,
+        {
+          delay: _delay,
+          duration: _duration,
+          repeat: _repeat
+        },
+        {
+          delay: globaleDelay,
+          duration: globaleDuration,
+          repeat: globaleRepeat
+        }
+      );
+      // 注册结束事件
+      registerEndEvent(el, defalutClassName, animateCssVariable);
 
-    const [actionCssStr, animateCssVariable] = setProperty(
-      el,
-      prefix,
-      {
-        delay: _delay,
-        duration: _duration,
-        repeat: _repeat
-      },
-      {
-        delay: globaleDelay,
-        duration: globaleDuration,
-        repeat: globaleRepeat
+      // 执行动画
+      el.className += ` ${prefix}animated ${prefix}${animateClassName} ${
+        actionCssStr ? actionCssStr : ""
+      }`;
+    };
+    if (isClick || isHover) {
+      let data: ElBucketMapValue;
+      if (elBucketMap.has(el)) {
+        data = elBucketMap.get(el)!;
+      } else {
+        data = {};
+        elBucketMap.set(el, data);
       }
-    );
-    registerCancelEvent(el, defalutClassName, animateCssVariable);
-
-    // 执行动画
-    el.className += ` ${prefix}animated ${prefix}${animateClassName} ${
-      actionCssStr ? actionCssStr : ""
-    }`;
+      if (isClick) {
+        el.addEventListener("click", runFn);
+        data.clickEventHandler = runFn;
+      }
+      if (isHover) {
+        el.addEventListener("mouseenter", runFn);
+        data.hoverEventHandler = runFn;
+      }
+    } else runFn();
   },
   updated(el, bind) {
-    console.log("on updated");
-
     const { modifiers, value } = bind;
+    const isClick = modifiers?.click ?? false;
+    const isHover = modifiers?.hover ?? false;
     const { delay, duration, repeat, autoPlay, play } = value ?? {};
     // 如果 mounted 执行了动画 就优先取消动画
     // 如果 mounted 没有执行动画 就跳过
     if (elBucketMap.has(el)) {
-      const { eventHandler } = elBucketMap.get(el);
-
-      // 先关闭动画和取消监听的事件 避免泄露
-      eventHandler();
-      el.removeEventListener("animationcancel", eventHandler);
-      el.removeEventListener("animationend", eventHandler);
+      const { animationendEventHandler, clickEventHandler, hoverEventHandler } =
+        elBucketMap.get(el)!;
+      if (animationendEventHandler) {
+        // 先关闭动画和取消监听的事件 避免泄露
+        animationendEventHandler();
+        el.removeEventListener("animationcancel", animationendEventHandler);
+        el.removeEventListener("animationend", animationendEventHandler);
+      }
+      // 如果有操作事件的话 先取消操作事件
+      if (clickEventHandler) {
+        el.removeEventListener("click", clickEventHandler);
+      }
+      if (hoverEventHandler) {
+        el.removeEventListener("mouseenter", hoverEventHandler);
+      }
     }
 
     // 全局单例里拿配置
@@ -159,30 +231,55 @@ export const baseObjectDirective = (
     const _play = play ?? true;
     if (!_autoPlay || !_play) return;
 
-    const [actionCssStr, animateCssVariable] = setProperty(
-      el,
-      prefix,
-      {
-        delay: _delay,
-        duration: _duration,
-        repeat: _repeat
-      },
-      {
-        delay: globaleDelay,
-        duration: globaleDuration,
-        repeat: globaleRepeat
-      }
-    );
-    registerCancelEvent(el, defalutClassName, animateCssVariable);
+    const runFn = () => {
+      cancelAndStopAnimateWithEvent(el, isClick, isHover, runFn);
+      // 设置css变量
+      const [actionCssStr, animateCssVariable] = setProperty(
+        el,
+        prefix,
+        {
+          delay: _delay,
+          duration: _duration,
+          repeat: _repeat
+        },
+        {
+          delay: globaleDelay,
+          duration: globaleDuration,
+          repeat: globaleRepeat
+        }
+      );
+      // 注册结束事件
+      registerEndEvent(el, defalutClassName, animateCssVariable);
 
-    // 执行动画
-    el.className += ` ${prefix}animated ${prefix}${animateClassName} ${
-      actionCssStr ? actionCssStr : ""
-    }`;
+      // 执行动画
+      el.className += ` ${prefix}animated ${prefix}${animateClassName} ${
+        actionCssStr ? actionCssStr : ""
+      }`;
+    };
+
+    if (isClick || isHover) {
+      let data: ElBucketMapValue;
+      if (elBucketMap.has(el)) {
+        data = elBucketMap.get(el)!;
+      } else {
+        data = {};
+        elBucketMap.set(el, data);
+      }
+      if (isClick) {
+        el.addEventListener("click", runFn);
+        data.clickEventHandler = runFn;
+      }
+      if (isHover) {
+        el.addEventListener("mouseenter", runFn);
+        data.hoverEventHandler = runFn;
+      }
+    } else runFn();
   },
   beforeUnmount(el) {
-    const currentMap = elBucketMap.get(el);
-    const eventHandler = currentMap.eventHandler;
+    if (!elBucketMap.has(el)) return;
+    const currentMap = elBucketMap.get(el)!;
+    const eventHandler = currentMap.animationendEventHandler;
+    if (!eventHandler) return;
     el.removeEventListener("animationcancel", eventHandler);
     el.removeEventListener("animationend", eventHandler);
   }

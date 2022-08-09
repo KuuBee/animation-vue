@@ -1,18 +1,33 @@
 const esbuild = require('esbuild')
+const { readdir, stat } = require('fs/promises');
 
-esbuild.build({
-  tsconfig: "./tsconfig.json",
-  entryPoints: [
-    './lib/main.ts',
-    './lib/directives/bounce.ts',
-    './lib/directives/flash.ts',
-    './lib/common/base-object-directive.ts',
-    './lib/common/config.ts',
-  ],
-  outdir: 'dist',
-  format: 'esm',
-  watch: true,
-})
-  .then(() => {
-    console.log('dev 监听中。。。');
-  }).catch(() => process.exit(1));
+const filePathList = [];
+async function getFilePath(src) {
+  const files = await readdir(src)
+  const fn = async function* (files) {
+    for (const file of files) {
+      const path = `${src}/${file}`
+      const stats = await stat(path)
+      if (stats.isFile()) {
+        yield path;
+      } else if (stats.isDirectory()) {
+        await getFilePath(path)
+      }
+    }
+  }
+  for await (path of fn(files)) {
+    filePathList.push(path);
+  }
+  return filePathList
+}
+getFilePath('./lib').then((filePathList) => {
+  esbuild.build({
+    tsconfig: "./tsconfig.json",
+    entryPoints: filePathList,
+    outdir: 'dist',
+    format: 'esm',
+    watch: true,
+  })
+}).then(() => {
+  console.log('dev 监听中。。。');
+}).catch(() => process.exit(1));

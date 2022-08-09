@@ -10,7 +10,9 @@ const app = createApp(App);
 app.use(
   vueAnimateCss(
     GlobalAnimateConfig.init({
-      duration: 500
+      duration: 1000,
+      delay: 1000,
+      repeat: 1
     })
   )
 );

@@ -1,52 +1,21 @@
 <template>
   <div class="app">
-    <!-- <div
-      v-bounce="{
-        delay: 270,
-        duration: 2000,
-        repeat: 3
-      }"
-    >
-      bounce
-    </div> -->
     <div class="animate-block">
-      <div v-bounce="state.bounceConfig">bounce</div>
+      <div v-bounce.click>bounce</div>
     </div>
-    <div class="button" @click="clickMe">click me!</div>
-    <!-- <div v-bounce.click>bounce</div>
-    <div v-flash.hover>bounce</div> -->
+    <div class="animate-block">
+      <div v-flash.click>flash</div>
+    </div>
   </div>
 </template>
-<script setup lang="ts">
-import { reactive, ref } from "vue";
-import { AnimateConfig } from "../../dist/common/config";
-
-let state = reactive<{
-  bounceConfig: AnimateConfig;
-}>({
-  bounceConfig: {
-    repeat: "infinite",
-    autoPlay: false
-  }
-});
-let index = 2;
-const clickMe = () => {
-  state.bounceConfig = {
-    autoPlay: index % 2 === 0
-  };
-  index++;
-};
-
-setTimeout(() => {
-  state.bounceConfig = {};
-}, 2000);
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .app {
   padding: 10px;
 }
 .animate-block {
+  user-select: none;
   width: 100%;
   background-color: thistle;
   height: 50px;

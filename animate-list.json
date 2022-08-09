@@ -1,0 +1,390 @@
+[
+  {
+    "defalutName": "bounce",
+    "directiveName": "bounce"
+  },
+  {
+    "defalutName": "flash",
+    "directiveName": "flash"
+  },
+  {
+    "defalutName": "pulse",
+    "directiveName": "pulse"
+  },
+  {
+    "defalutName": "rubberBand",
+    "directiveName": "rubber-band"
+  },
+  {
+    "defalutName": "shakeX",
+    "directiveName": "shake-x"
+  },
+  {
+    "defalutName": "shakeY",
+    "directiveName": "shake-y"
+  },
+  {
+    "defalutName": "headShake",
+    "directiveName": "head-shake"
+  },
+  {
+    "defalutName": "swing",
+    "directiveName": "swing"
+  },
+  {
+    "defalutName": "tada",
+    "directiveName": "tada"
+  },
+  {
+    "defalutName": "wobble",
+    "directiveName": "wobble"
+  },
+  {
+    "defalutName": "jello",
+    "directiveName": "jello"
+  },
+  {
+    "defalutName": "heartBeat",
+    "directiveName": "heart-beat"
+  },
+  {
+    "defalutName": "backInDown",
+    "directiveName": "back-in-down"
+  },
+  {
+    "defalutName": "backInLeft",
+    "directiveName": "back-in-left"
+  },
+  {
+    "defalutName": "backInRight",
+    "directiveName": "back-in-right"
+  },
+  {
+    "defalutName": "backInUp",
+    "directiveName": "back-in-up"
+  },
+  {
+    "defalutName": "backOutDown",
+    "directiveName": "back-out-down"
+  },
+  {
+    "defalutName": "backOutLeft",
+    "directiveName": "back-out-left"
+  },
+  {
+    "defalutName": "backOutRight",
+    "directiveName": "back-out-right"
+  },
+  {
+    "defalutName": "backOutUp",
+    "directiveName": "back-out-up"
+  },
+  {
+    "defalutName": "bounceIn",
+    "directiveName": "bounce-in"
+  },
+  {
+    "defalutName": "bounceInDown",
+    "directiveName": "bounce-in-down"
+  },
+  {
+    "defalutName": "bounceInLeft",
+    "directiveName": "bounce-in-left"
+  },
+  {
+    "defalutName": "bounceInRight",
+    "directiveName": "bounce-in-right"
+  },
+  {
+    "defalutName": "bounceInUp",
+    "directiveName": "bounce-in-up"
+  },
+  {
+    "defalutName": "bounceOut",
+    "directiveName": "bounce-out"
+  },
+  {
+    "defalutName": "bounceOutDown",
+    "directiveName": "bounce-out-down"
+  },
+  {
+    "defalutName": "bounceOutLeft",
+    "directiveName": "bounce-out-left"
+  },
+  {
+    "defalutName": "bounceOutRight",
+    "directiveName": "bounce-out-right"
+  },
+  {
+    "defalutName": "bounceOutUp",
+    "directiveName": "bounce-out-up"
+  },
+  {
+    "defalutName": "fadeIn",
+    "directiveName": "fade-in"
+  },
+  {
+    "defalutName": "fadeInDown",
+    "directiveName": "fade-in-down"
+  },
+  {
+    "defalutName": "fadeInDownBig",
+    "directiveName": "fade-in-down-big"
+  },
+  {
+    "defalutName": "fadeInLeft",
+    "directiveName": "fade-in-left"
+  },
+  {
+    "defalutName": "fadeInLeftBig",
+    "directiveName": "fade-in-left-big"
+  },
+  {
+    "defalutName": "fadeInRight",
+    "directiveName": "fade-in-right"
+  },
+  {
+    "defalutName": "fadeInRightBig",
+    "directiveName": "fade-in-right-big"
+  },
+  {
+    "defalutName": "fadeInUp",
+    "directiveName": "fade-in-up"
+  },
+  {
+    "defalutName": "fadeInUpBig",
+    "directiveName": "fade-in-up-big"
+  },
+  {
+    "defalutName": "fadeInTopLeft",
+    "directiveName": "fade-in-top-left"
+  },
+  {
+    "defalutName": "fadeInTopRight",
+    "directiveName": "fade-in-top-right"
+  },
+  {
+    "defalutName": "fadeInBottomLeft",
+    "directiveName": "fade-in-bottom-left"
+  },
+  {
+    "defalutName": "fadeInBottomRight",
+    "directiveName": "fade-in-bottom-right"
+  },
+  {
+    "defalutName": "fadeOut",
+    "directiveName": "fade-out"
+  },
+  {
+    "defalutName": "fadeOutDown",
+    "directiveName": "fade-out-down"
+  },
+  {
+    "defalutName": "fadeOutDownBig",
+    "directiveName": "fade-out-down-big"
+  },
+  {
+    "defalutName": "fadeOutLeft",
+    "directiveName": "fade-out-left"
+  },
+  {
+    "defalutName": "fadeOutLeftBig",
+    "directiveName": "fade-out-left-big"
+  },
+  {
+    "defalutName": "fadeOutRight",
+    "directiveName": "fade-out-right"
+  },
+  {
+    "defalutName": "fadeOutRightBig",
+    "directiveName": "fade-out-right-big"
+  },
+  {
+    "defalutName": "fadeOutUp",
+    "directiveName": "fade-out-up"
+  },
+  {
+    "defalutName": "fadeOutUpBig",
+    "directiveName": "fade-out-up-big"
+  },
+  {
+    "defalutName": "fadeOutTopLeft",
+    "directiveName": "fade-out-top-left"
+  },
+  {
+    "defalutName": "fadeOutTopRight",
+    "directiveName": "fade-out-top-right"
+  },
+  {
+    "defalutName": "fadeOutBottomRight",
+    "directiveName": "fade-out-bottom-right"
+  },
+  {
+    "defalutName": "fadeOutBottomLeft",
+    "directiveName": "fade-out-bottom-left"
+  },
+  {
+    "defalutName": "flip",
+    "directiveName": "flip"
+  },
+  {
+    "defalutName": "flipInX",
+    "directiveName": "flip-in-x"
+  },
+  {
+    "defalutName": "flipInY",
+    "directiveName": "flip-in-y"
+  },
+  {
+    "defalutName": "flipOutX",
+    "directiveName": "flip-out-x"
+  },
+  {
+    "defalutName": "flipOutY",
+    "directiveName": "flip-out-y"
+  },
+  {
+    "defalutName": "lightSpeedInRight",
+    "directiveName": "light-speed-in-right"
+  },
+  {
+    "defalutName": "lightSpeedInLeft",
+    "directiveName": "light-speed-in-left"
+  },
+  {
+    "defalutName": "lightSpeedOutRight",
+    "directiveName": "light-speed-out-right"
+  },
+  {
+    "defalutName": "lightSpeedOutLeft",
+    "directiveName": "light-speed-out-left"
+  },
+  {
+    "defalutName": "rotateIn",
+    "directiveName": "rotate-in"
+  },
+  {
+    "defalutName": "rotateInDownLeft",
+    "directiveName": "rotate-in-down-left"
+  },
+  {
+    "defalutName": "rotateInDownRight",
+    "directiveName": "rotate-in-down-right"
+  },
+  {
+    "defalutName": "rotateInUpLeft",
+    "directiveName": "rotate-in-up-left"
+  },
+  {
+    "defalutName": "rotateInUpRight",
+    "directiveName": "rotate-in-up-right"
+  },
+  {
+    "defalutName": "rotateOut",
+    "directiveName": "rotate-out"
+  },
+  {
+    "defalutName": "rotateOutDownLeft",
+    "directiveName": "rotate-out-down-left"
+  },
+  {
+    "defalutName": "rotateOutDownRight",
+    "directiveName": "rotate-out-down-right"
+  },
+  {
+    "defalutName": "rotateOutUpLeft",
+    "directiveName": "rotate-out-up-left"
+  },
+  {
+    "defalutName": "rotateOutUpRight",
+    "directiveName": "rotate-out-up-right"
+  },
+  {
+    "defalutName": "hinge",
+    "directiveName": "hinge"
+  },
+  {
+    "defalutName": "jackInTheBox",
+    "directiveName": "jack-in-the-box"
+  },
+  {
+    "defalutName": "rollIn",
+    "directiveName": "roll-in"
+  },
+  {
+    "defalutName": "rollOut",
+    "directiveName": "roll-out"
+  },
+  {
+    "defalutName": "zoomIn",
+    "directiveName": "zoom-in"
+  },
+  {
+    "defalutName": "zoomInDown",
+    "directiveName": "zoom-in-down"
+  },
+  {
+    "defalutName": "zoomInLeft",
+    "directiveName": "zoom-in-left"
+  },
+  {
+    "defalutName": "zoomInRight",
+    "directiveName": "zoom-in-right"
+  },
+  {
+    "defalutName": "zoomInUp",
+    "directiveName": "zoom-in-up"
+  },
+  {
+    "defalutName": "zoomOut",
+    "directiveName": "zoom-out"
+  },
+  {
+    "defalutName": "zoomOutDown",
+    "directiveName": "zoom-out-down"
+  },
+  {
+    "defalutName": "zoomOutLeft",
+    "directiveName": "zoom-out-left"
+  },
+  {
+    "defalutName": "zoomOutRight",
+    "directiveName": "zoom-out-right"
+  },
+  {
+    "defalutName": "zoomOutUp",
+    "directiveName": "zoom-out-up"
+  },
+  {
+    "defalutName": "slideInDown",
+    "directiveName": "slide-in-down"
+  },
+  {
+    "defalutName": "slideInLeft",
+    "directiveName": "slide-in-left"
+  },
+  {
+    "defalutName": "slideInRight",
+    "directiveName": "slide-in-right"
+  },
+  {
+    "defalutName": "slideInUp",
+    "directiveName": "slide-in-up"
+  },
+  {
+    "defalutName": "slideOutDown",
+    "directiveName": "slide-out-down"
+  },
+  {
+    "defalutName": "slideOutLeft",
+    "directiveName": "slide-out-left"
+  },
+  {
+    "defalutName": "slideOutRight",
+    "directiveName": "slide-out-right"
+  },
+  {
+    "defalutName": "slideOutUp",
+    "directiveName": "slide-out-up"
+  }
+]

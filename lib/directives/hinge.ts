@@ -2,9 +2,9 @@ import type { Plugin } from "vue";
 
 import { baseObjectDirective } from "../common/base-object-directive";
 
-export const flash = baseObjectDirective("flash");
-export const flashDirective: Plugin = {
+export const hinge = baseObjectDirective("hinge");
+export const hingeDirective: Plugin = {
   install(app) {
-    app.directive("flash", flash);
+    app.directive("hinge", hinge);
   }
 };
