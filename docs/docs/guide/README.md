@@ -1,4 +1,19 @@
-# TODO LIST
+---
+lang: EN
+title: Introduction
+description: Introduction
+---
+# Vue.Animate.css
+
+[Vue](https://cn.vuejs.org/) directive implement for [Animate.css](https://animate.style/)
+
+**Simple**
+
+**Configured**
+
+**Efficient**
+
+## TODO LIST
 
 - [x] 控制动画执行
 - [x] 自定义动画延迟
