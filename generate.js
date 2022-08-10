@@ -33,10 +33,14 @@ export const vueAnimateCss = (config?: GlobalAnimateConfig): Plugin => ({
     config?.initConfig();
     // 注册指令
 ${animateList.map(({ defalutName }) => {
-    return `    ${defalutName}Directive.install!(app);\n`
+    return `    app.use(${defalutName}Directive);\n`
   }).join('')}
   }
-}); `
+});
+
+export {\n${animateList.map(({ defalutName, directiveName }) => {
+  return `  ${defalutName}Directive,\n`
+}).join('')}}\n`
   fs.writeFileSync(`./lib/main.ts`, content)
 }
 generateDirectivesFiles();
