@@ -7,7 +7,7 @@ export class GlobalAnimateConfig {
     stop?: boolean;
   }) {
     const { delay, duration, repeat, prefix, stop } = config ?? {};
-    this.delay = delay ?? 1000;
+    this.delay = delay ?? 0;
     this.duration = duration ?? 1000;
     this.repeat = repeat ?? 1;
     this.prefix = prefix ?? "animate__";
