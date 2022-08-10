@@ -1,5 +1,5 @@
 import type { Plugin } from "vue";
-import { GlobalAnimateConfig } from "./common/config";
+import { GlobalAnimateConfig, AnimateConfig } from "./common/config";
 // 导入指令
 import { bounceDirective } from "./directives/bounce";
 import { flashDirective } from "./directives/flash";
@@ -205,6 +205,8 @@ export const vueAnimateCss = (config?: GlobalAnimateConfig): Plugin => ({
 });
 
 export {
+  GlobalAnimateConfig,
+  AnimateConfig,
   bounceDirective,
   flashDirective,
   pulseDirective,

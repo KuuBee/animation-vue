@@ -23,7 +23,7 @@ export const ${defalutName}Directive: Plugin = {
 }
 function generateMainTS() {
   const content = `import type { Plugin } from "vue";
-import { GlobalAnimateConfig } from "./common/config";
+import { GlobalAnimateConfig, AnimateConfig } from "./common/config";
 // 导入指令
 ${animateList.map(({ defalutName, directiveName }) => {
     return `import { ${defalutName}Directive } from "./directives/${directiveName}";\n`
@@ -38,9 +38,12 @@ ${animateList.map(({ defalutName }) => {
   }
 });
 
-export {\n${animateList.map(({ defalutName, directiveName }) => {
-  return `  ${defalutName}Directive,\n`
-}).join('')}}\n`
+export {
+  GlobalAnimateConfig,
+  AnimateConfig,
+${animateList.map(({ defalutName, directiveName }) => {
+    return `  ${defalutName}Directive,\n`
+  }).join('')}}\n`
   fs.writeFileSync(`./lib/main.ts`, content)
 }
 generateDirectivesFiles();
