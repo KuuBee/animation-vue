@@ -8,9 +8,11 @@ type ElBucketMapValue = {
   hoverEventHandler?: () => void;
 };
 const elBucketMap = new WeakMap<HTMLElement, ElBucketMapValue>();
-type SetPropertyConfig = Pick<
-  NonNullable<ConstructorParameters<typeof GlobalAnimateConfig>["0"]>,
-  "delay" | "duration" | "repeat"
+type SetPropertyConfig = Required<
+  Pick<
+    NonNullable<ConstructorParameters<typeof GlobalAnimateConfig>["0"]>,
+    "delay" | "duration" | "repeat"
+  >
 >;
 type CssSetPropertyFnParametersList = Parameters<
   CSSStyleDeclaration["setProperty"]
@@ -34,18 +36,24 @@ function setProperty(
   // 当改变了css变量后 需要加个初始的动作class
   let actionCssStr: string = "";
 
-  // 如果当前的变量和全局变量有区别就重新设置
-  if (delay !== globaleDelay) {
-    animateCssVariable.push(["--animate-delay", `${delay}ms`]);
+  // 如果delay不为0就添加延迟类名
+  if (delay < 0) {
+    // 如果和全局不一致 就再当前节点上添加变量
+    if (delay !== globaleDelay)
+      animateCssVariable.push(["--animate-delay", `${delay}ms`]);
     actionCssStr += `${prefix}delay-1s`;
   }
+
   if (duration !== globaleDuration) {
     animateCssVariable.push(["--animate-duration", `${duration}ms`]);
   }
   if (repeat !== 1) {
-    animateCssVariable.push(["--animate-repeat", `${repeat}`]);
+    if (repeat !== globaleRepeat)
+      animateCssVariable.push(["--animate-repeat", `${repeat}`]);
     actionCssStr += `${actionCssStr ? " " : ""}${prefix}repeat-1`;
   }
+
+  console.log("animateCssVariable", animateCssVariable);
 
   for (const item of animateCssVariable) {
     el.style.setProperty.call(el.style, ...item);

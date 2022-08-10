@@ -3,13 +3,18 @@ import App from "./App.vue";
 import "normalize.css";
 import "animate.css";
 
-import { vueAnimateCss } from "animation-vue";
+import { GlobalAnimateConfig, vueAnimateCss } from "../../lib/main";
 
 const app = createApp(App);
 // app.use(bounceDirective);
 // app.use(flashDirective);
 app.use(
-  vueAnimateCss()
+  vueAnimateCss(
+    GlobalAnimateConfig.init({
+      delay: 5000,
+      duration: 15000
+    })
+  )
   // GlobalAnimateConfig.init({
   //   duration: 1000,
   //   delay: 1000,
