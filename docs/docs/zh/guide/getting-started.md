@@ -7,12 +7,12 @@ title: 快速上手
 
 ## 安装
 
-使用你喜爱的包管理工具安装 `vue.animate.css`：
+使用你喜爱的包管理工具安装 `animation-vue`：
 
 ```sh
-npm i vue.animate.css animate.css
+npm i animation-vue animate.css
 # 或者
-pnpm add vue.animate.css animate.css
+pnpm add animation-vue animate.css
 ```
 
 导入 `animate.css` 到你的文件中：
@@ -28,7 +28,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import "animate.css";
 
-import { vueAnimateCss } from "vue.animate.css/dist/main";
+import { vueAnimateCss } from "animation-vue";
 
 const app = createApp(App);
 app.use(vueAnimateCss());
