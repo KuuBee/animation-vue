@@ -1,8 +1,8 @@
 import type { NavbarConfig } from "@vuepress/theme-default";
 
-export const navbarEn: NavbarConfig = [
+export const navbarZh: NavbarConfig = [
   {
-    text: "Guide",
+    text: "导航",
     link: "/guide/"
   },
   {
