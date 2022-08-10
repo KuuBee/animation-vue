@@ -12,7 +12,9 @@ app.use(
   vueAnimateCss(
     GlobalAnimateConfig.init({
       delay: 5000,
-      duration: 15000
+      duration: 15000,
+      repeat: "infinite"
+      // repeat: 2
     })
   )
   // GlobalAnimateConfig.init({

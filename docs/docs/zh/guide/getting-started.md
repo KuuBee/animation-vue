@@ -37,7 +37,7 @@ app.mount("#app");
 
 ## 基础使用
 
-再你安装完成后，你可以在你的元素上添加对应的指令：
+安装完成后，你可以在元素上添加对应的指令：
 
 ```html
 <div v-bounce>bounce</div>
@@ -45,4 +45,21 @@ app.mount("#app");
 <div v-flash.click>flash! click me!</div>
 ```
 
-现在你已经得到动态的 css 动画元素了。:tada:
+现在刷新页面或点击元素，你应该可以看见动画效果了:tada:
+
+
+<script setup lang="ts">
+import { reactive } from "vue";
+import { AnimateConfig } from "../../lib/main";
+
+const state = reactive<{
+  bounceConfig: AnimateConfig;
+}>({
+  bounceConfig: {
+    duration: 2000,
+    repeat: 3,
+    delay: 700,
+    autoPlay: false
+  }
+});
+</script>

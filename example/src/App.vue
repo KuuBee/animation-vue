@@ -4,12 +4,28 @@
       <div v-bounce.click>bounce</div>
     </div>
     <div class="animate-block">
+      <div v-bounce="state.bounceConfig">bounce</div>
+    </div>
+    <div class="animate-block">
       <div v-flash.click>flash</div>
     </div>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { reactive } from "vue";
+import { AnimateConfig } from "../../lib/main";
 
+const state = reactive<{
+  bounceConfig: AnimateConfig;
+}>({
+  bounceConfig: {
+    duration: 2000,
+    repeat: 3,
+    delay: 700,
+    autoPlay: false
+  }
+});
+</script>
 <style scoped>
 .app {
   padding: 10px;

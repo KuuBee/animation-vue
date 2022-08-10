@@ -1,10 +1,9 @@
 ---
-lang: EN
-title: Introduction
-description: Introduction
+lang: zh
+title: 介绍
 ---
 
-# Vue.Animate.css
+# Animation Vue
 
 基于 [Vue](https://cn.vuejs.org/) 指令实现的 [Animate.css](https://animate.style/)
 
