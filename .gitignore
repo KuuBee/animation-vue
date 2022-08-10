@@ -23,6 +23,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+example
+docs
 
 # vue press
 docs/docs/.vuepress/.temp
