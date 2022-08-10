@@ -3,11 +3,7 @@ import App from "./App.vue";
 import "normalize.css";
 import "animate.css";
 
-import {
-  bounceDirective,
-  flashDirective,
-  vueAnimateCss
-} from "../../dist/main";
+import {} from "animation-vue";
 import { GlobalAnimateConfig } from "../../dist/common/config";
 
 const app = createApp(App);

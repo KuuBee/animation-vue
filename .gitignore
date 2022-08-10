@@ -27,3 +27,5 @@ dist-ssr
 # vue press
 docs/docs/.vuepress/.temp
 docs/docs/.vuepress/.cache
+dist
+types
