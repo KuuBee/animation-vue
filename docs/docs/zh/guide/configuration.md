@@ -93,6 +93,6 @@ const state = reactive<{
 ```
 
 ::: warning 注意
-当使用了修饰符后，如果 autoPlay 为 false，则动画不会默认播放直至 autoPlay 为 true。
-当 repeat 设置为 infinite 后动画将不会终结，并且会无视掉修饰符。
+当使用了修饰符后，如果 autoPlay 为 false，则动画不会默认播放直至 autoPlay 为 true。 <br>
+当 repeat 设置为 infinite 后动画将不会终结，并且只会在 autoPlay 为 true 时才会播放。
 :::

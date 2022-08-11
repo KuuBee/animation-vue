@@ -2,7 +2,7 @@
 home: true
 title: 主页
 actions:
-  - text: Get Started
+  - text: 立即上车
     link: /zh/guide/getting-started.html
     type: primary
 # features:

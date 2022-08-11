@@ -1,48 +1,64 @@
 ---
-lang: EN
+lang: en
 title: Getting Started
-description: get-start
 ---
 
 # Getting Started
 
-## Install
+## install
 
-install `vue.animate.css` with your favorite package manager:
+Install using your favorite package manager `animation-vue`：
 
 ```sh
-npm i vue.animate.css animate.css
+npm i animation-vue animate.css
 # or
-pnpm add vue.animate.css animate.css
+pnpm add animation-vue animate.css
 ```
 
-Import `animate.css` into your file:
+impot `animate.css` into your files:
 
 ```ts
 import "animate.css";
 ```
 
-and add to the app as a plugin:
+And use the plugin in main.ts:
 
 ```ts{5,8}
 import { createApp } from "vue";
 import App from "./App.vue";
 import "animate.css";
 
-import { vueAnimateCss } from "vue.animate.css/dist/main";
+import { vueAnimateCss } from "animation-vue";
 
 const app = createApp(App);
 app.use(vueAnimateCss());
 app.mount("#app");
 ```
 
-## Basic usage
+## Basic Use
 
-After installing `vue.animate.css`,you can add directive to you element:
+After the installation complete, you can add the directives to the element:
 
 ```html
 <div v-bounce>bounce</div>
 
 <div v-flash.click>flash! click me!</div>
 ```
-Now you've got a CSS animated element. Nice!:tada:
+
+Now refresh the page or click on the element and you should see the animation :tada:
+
+<script setup lang="ts">
+import { reactive } from "vue";
+import { AnimateConfig } from "../../lib/main";
+
+const state = reactive<{
+  bounceConfig: AnimateConfig;
+}>({
+  bounceConfig: {
+    duration: 2000,
+    repeat: 3,
+    delay: 700,
+    autoPlay: false
+  }
+});
+</script>

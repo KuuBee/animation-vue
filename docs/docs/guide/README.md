@@ -1,25 +1,21 @@
 ---
-lang: EN
-title: Introduction
-description: Introduction
+lang: en
+title: Introduce
 ---
-# Vue.Animate.css
 
-[Vue](https://cn.vuejs.org/) directive implement for [Animate.css](https://animate.style/)
+# Introduce
 
-**Simple**
+## Animation Vue
 
-**Configured**
+[Vue](https://cn.vuejs.org/) directive implement for [Animate.css](https://animate.style/).
 
-**Efficient**
+## TODO List
 
-## TODO LIST
-
-- [x] 控制动画执行
-- [x] 自定义动画延迟
-- [x] 自定义动画是否循环
-- [x] 自定义动画持续时间
-- [x] 对点击事件和 hover 进行控制
-- [x] 添加全局配置单例
-- [ ] 元素指定 dom 范围后再进行动画，并且提供对应的配置项
-- [ ] 自定义动画类名
+- [x] controls animation execution
+- [x] custom animation delay
+- [x] custom animation loops
+- [x] custom animation duration
+- [x] controls for click events and hover events
+- [x] add global config singleton
+- [ ] observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport
+- [ ] custom animation class name
