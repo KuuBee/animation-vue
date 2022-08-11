@@ -10,5 +10,9 @@ export const navbarEn: NavbarConfig = [
       "/guide/configuration.md",
       "/guide/supported.md"
     ]
+  },
+  {
+    text: "Github",
+    link: "https://github.com/jofftiquez/v-animate-css"
   }
 ];
