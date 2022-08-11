@@ -3,6 +3,7 @@ import { navbarEn, navbarZh } from "./config/navbar";
 import { sidebarEn, sidebarZh } from "./config/sidebar";
 
 export default defineUserConfig({
+  base: "/animation-vue/",
   locales: {
     "/": {
       lang: "en-us",
