@@ -47,7 +47,6 @@ app.mount("#app");
 
 现在刷新页面或点击元素，你应该可以看见动画效果了:tada:
 
-
 <script setup lang="ts">
 import { reactive } from "vue";
 import { AnimateConfig } from "../../lib/main";

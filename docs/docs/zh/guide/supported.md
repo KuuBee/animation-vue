@@ -1,9 +1,9 @@
 ---
 lang: zh
-title: 已经支持的类名
+title: 已经支持的动画
 ---
 
-# 已经支持的类名
+# 已经支持的动画
 
 | Attention seekers | Back entrances | Back exits   | Bouncing entrances |
 | ----------------- | -------------- | ------------ | ------------------ |
