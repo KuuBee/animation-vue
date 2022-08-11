@@ -10,5 +10,9 @@ export const navbarZh: NavbarConfig = [
       "/zh/guide/configuration.md",
       "/zh/guide/supported.md"
     ]
+  },
+  {
+    text: "Github",
+    link: "https://github.com/KuuBee/animation-vue/"
   }
 ];

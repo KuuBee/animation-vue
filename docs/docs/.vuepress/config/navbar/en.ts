@@ -13,6 +13,6 @@ export const navbarEn: NavbarConfig = [
   },
   {
     text: "Github",
-    link: "https://github.com/jofftiquez/v-animate-css"
+    link: "https://github.com/KuuBee/animation-vue/"
   }
 ];
