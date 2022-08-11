@@ -3,7 +3,7 @@ import App from "./App.vue";
 import "normalize.css";
 import "animate.css";
 
-import { GlobalAnimateConfig, vueAnimateCss } from "../../lib/main";
+import { GlobalAnimateConfig, vueAnimateCss } from "animation-vue";
 
 const app = createApp(App);
 // app.use(bounceDirective);
@@ -11,16 +11,8 @@ const app = createApp(App);
 app.use(
   vueAnimateCss(
     GlobalAnimateConfig.init({
-      delay: 5000,
-      duration: 15000,
-      repeat: "infinite"
-      // repeat: 2
+      duration: 370
     })
   )
-  // GlobalAnimateConfig.init({
-  //   duration: 1000,
-  //   delay: 1000,
-  //   repeat: 1
-  // })
 );
 app.mount("#app");
