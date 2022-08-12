@@ -116,6 +116,24 @@ function cancelAndStopAnimateWithEvent(
   }
 }
 
+// 移除当前节点上之前添加的事件
+// 理论上不会影响到其他地方添加的事件
+function removeAllElEvent(el: HTMLElement) {
+  if (!elBucketMap.has(el)) return;
+  const { animationendEventHandler, clickEventHandler, hoverEventHandler } =
+    elBucketMap.get(el)!;
+  if (animationendEventHandler) {
+    // 先关闭动画和取消监听的事件 避免泄露
+    animationendEventHandler();
+    el.removeEventListener("animationcancel", animationendEventHandler);
+    el.removeEventListener("animationend", animationendEventHandler);
+  }
+  // 如果有操作事件的话 先取消操作事件
+  if (clickEventHandler) el.removeEventListener("click", clickEventHandler);
+  if (hoverEventHandler)
+    el.removeEventListener("mouseenter", hoverEventHandler);
+}
+
 export const baseObjectDirective = (
   animateClassName: string
 ): ObjectDirective<HTMLElement, AnimateConfig> => ({
@@ -199,23 +217,7 @@ export const baseObjectDirective = (
     const { delay, duration, repeat, autoPlay, play } = value ?? {};
     // 如果 mounted 执行了动画 就优先取消动画
     // 如果 mounted 没有执行动画 就跳过
-    if (elBucketMap.has(el)) {
-      const { animationendEventHandler, clickEventHandler, hoverEventHandler } =
-        elBucketMap.get(el)!;
-      if (animationendEventHandler) {
-        // 先关闭动画和取消监听的事件 避免泄露
-        animationendEventHandler();
-        el.removeEventListener("animationcancel", animationendEventHandler);
-        el.removeEventListener("animationend", animationendEventHandler);
-      }
-      // 如果有操作事件的话 先取消操作事件
-      if (clickEventHandler) {
-        el.removeEventListener("click", clickEventHandler);
-      }
-      if (hoverEventHandler) {
-        el.removeEventListener("mouseenter", hoverEventHandler);
-      }
-    }
+    removeAllElEvent(el);
 
     // 全局单例里拿配置
     const {
@@ -284,11 +286,6 @@ export const baseObjectDirective = (
     } else runFn();
   },
   beforeUnmount(el) {
-    if (!elBucketMap.has(el)) return;
-    const currentMap = elBucketMap.get(el)!;
-    const eventHandler = currentMap.animationendEventHandler;
-    if (!eventHandler) return;
-    el.removeEventListener("animationcancel", eventHandler);
-    el.removeEventListener("animationend", eventHandler);
+    removeAllElEvent(el);
   }
 });
