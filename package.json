@@ -1,6 +1,6 @@
 {
   "name": "animation-vue",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Vue directive implement for Animate.css",
   "main": "index.js",
   "types": "./types/main.d.ts",
