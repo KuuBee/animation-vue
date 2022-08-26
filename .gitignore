@@ -24,7 +24,7 @@ dist-ssr
 *.sln
 *.sw?
 example
-docs
+# docs
 
 # vue press
 docs/docs/.vuepress/.temp

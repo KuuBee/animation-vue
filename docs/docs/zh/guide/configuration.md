@@ -76,6 +76,8 @@ const state = reactive<{
 
 ```html
 <div v-bounce.click="state.bounceConfig">bounce</div>
+<!-- 混合使用 -->
+<div v-bounce.click.hover="state.bounceConfig">bounce</div>
 ```
 
 ```ts
