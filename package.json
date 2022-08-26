@@ -1,6 +1,6 @@
 {
   "name": "animation-vue",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Vue directive implement for Animate.css",
   "main": "mian.ts",
   "types": "./types/main.d.ts",
@@ -10,7 +10,7 @@
     "build": "tsc --emitDeclarationOnly --declaration && node ./esbuild.prod",
     "generate": "node ./generate.js",
     "commit": "git-cz",
-    "changlog":"conventional-changelog -p angular -i CHANGELOG.md -s"
+    "changlog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "config": {
     "commitizen": {
