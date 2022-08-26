@@ -2,7 +2,7 @@
   "name": "animation-vue",
   "version": "0.0.8",
   "description": "Vue directive implement for Animate.css",
-  "main": "mian.ts",
+  "main": "index.js",
   "types": "./types/main.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

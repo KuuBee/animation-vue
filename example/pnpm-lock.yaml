@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@vitejs/plugin-vue': ^3.0.0
   animate.css: ^4.1.1
-  animation-vue: 0.0.4
+  animation-vue: 0.0.8
   normalize.css: ^8.0.1
   typescript: ^4.6.4
   vite: ^3.0.0
@@ -12,7 +12,7 @@ specifiers:
 
 dependencies:
   animate.css: 4.1.1
-  animation-vue: 0.0.4
+  animation-vue: 0.0.8
   normalize.css: 8.0.1
   vue: 3.2.37
 
@@ -174,8 +174,8 @@ packages:
     resolution: {integrity: sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==}
     dev: false
 
-  /animation-vue/0.0.4:
-    resolution: {integrity: sha512-QLY7BDKByTb5jThrzKG7OyHIRDGjTrJ0it5Ffm9rjJlJCJlUhn/lNwiwlxbPWGngSkUtU26zvHEM2qRlEhc4nA==}
+  /animation-vue/0.0.8:
+    resolution: {integrity: sha512-peWnMkog8YJTiLscGQbWpjMvLIPBX3qRo28fN9td1FtkpTdFWNzsZHTCpGocjZPwO538fe3fc42nJQPDrXYfxg==}
     dev: false
 
   /csstype/2.6.20:
